@@ -40,6 +40,7 @@ function Nav() {
               aria-haspopup="true"
               aria-expanded={isDropdownOpen}
               onClick={toggleDropdown}
+              href='/'
             >
               Manage Movies
             </p>
