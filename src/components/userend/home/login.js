@@ -5,12 +5,12 @@ function SignIn(){
   const [email,setEmail]=useState("");
   const [pass,setPass]=useState("");
   const [data,setdata]=useState("");
+  const [msg,setmsg]=useState("");
   const handleSubmit=()=>{
     Axios.get("http://localhost:4000/users/get-password/"+email)
     .then((res) => {
       if(res.status === 200) {
         setdata(res.data);
-        alert("successssssssssssssssss!")
       }
       else Promise.reject()
     })
@@ -21,16 +21,19 @@ function SignIn(){
         if(pass===data.password){
           localStorage.setItem('username',data.name);
           localStorage.setItem('id',data._id);
-          alert("login successful");
+          setmsg("login successful");
+          document.getElementById("message").style.color="green";
         }
         else{
-          alert("login failed");
+          setmsg("login failed");
+          document.getElementById("message").style.color="red";
         }
     }
   }
   return (
     <div style={{maxWidth:"50%"}} className='d-grid mx-auto'>
       <h2 className="text-center mb-4">Login</h2>
+      <p id="message" className='text-center'>{msg}</p>
       <form className='form-control' onSubmit={handleSubmit}>
         <label htmlFor="email" className="form-label">Email</label>
         <input type="text" id="email" onChange={(event) => setEmail(event.target.value)} className="form-control my-2" placeholder="Enter your email"/>
