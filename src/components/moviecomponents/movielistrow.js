@@ -22,7 +22,7 @@ function Movielistrow(props) {
             <td>{name}</td>
             <td>{length}</td>
             <td>{genre}</td>
-            <td><img src={image} height="90px" width="160px"/></td>
+            <td><img src={image} alt={name} height="90px" width="160px"/></td>
             <td>{rating}</td>
             <td class="d-gridjustify-content-center align-items-center my-auto">
                 <Link class="text-decoration-none text-light me-4" to={"/edit-movie/" + _id}>

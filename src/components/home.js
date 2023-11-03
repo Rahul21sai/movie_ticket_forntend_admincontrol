@@ -25,14 +25,14 @@ function Nav() {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="nav">
+        <ul className="nav mt-3">
           <li className="nav-item">
             <Link to="/users" className="nav-link">
               Users
             </Link>
           </li>
           <li className="nav-item dropdown">
-            <a
+            <p
               className="nav-link dropdown-toggle"
               id="navbarDropdownMenuLink"
               role="button"
@@ -42,7 +42,7 @@ function Nav() {
               onClick={toggleDropdown}
             >
               Manage Movies
-            </a>
+            </p>
             <div
               className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`}
               aria-labelledby="navbarDropdownMenuLink"
@@ -61,8 +61,8 @@ function Nav() {
               Profile
             </Link>
           </li>
+          <p className='nav-item mt-2 mx-3'>{localStorage.getItem('username')}</p>
         </ul>
-        <p>{localStorage.getItem('username')}</p>
       </div>
     </nav>
   );
