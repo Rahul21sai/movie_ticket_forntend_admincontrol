@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Axios from 'axios'
+import Hasher from '../../passwordutils/hasher';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -24,27 +25,21 @@ const SignUp = () => {
     if (!formData.email) {
       newErrors.email = 'Email is required';
     }
-
     if (!formData.username) {
       newErrors.username = 'Username is required';
     }
-
     if (!formData.password) {
       newErrors.password = 'Password is required';
     }
-
     if (formData.password !== formData.reEnterPassword) {
       newErrors.reEnterPassword = 'Passwords do not match';
     }
-
     if (!formData.dob) {
       newErrors.dob = 'Date of Birth is required';
     }
-
     if (!formData.mobile) {
       newErrors.mobile = 'Mobile number is required';
     }
-
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
@@ -52,26 +47,43 @@ const SignUp = () => {
 
   const handleSignUp = (event) => {
     event.preventDefault();
-
     const isFormValid = validateForm();
-
+  
     if (isFormValid) {
+      // Hash the password using the hashPassword utility function
+      Hasher(formData.password)
+        .then((hashedPassword) => {
+          console.log('Hashed Password:', hashedPassword); // Add this line for debugging
+          // Create a user object with the hashed password
+          const data = {
+            name: formData.username,
+            email: formData.email,
+            password: hashedPassword,
+            mobile: formData.mobile,
+            dob: formData.dob,
+          };
 
-        const data = {"name":formData.username,"email":formData.email,"password":formData.password,"mobile":formData.mobile,"dob":formData.dob};
-        Axios.post("http://localhost:4000/users/register/",data)
-        .then((res)=>{
-            if(res.status === 200)
+          // Send the user data to your server for registration
+          Axios.post("http://localhost:4000/users/register/", data)
+            .then((res) => {
+              if (res.status === 200) {
                 alert("Record added successfully");
-            else
+              } else {
                 Promise.reject();
+              }
+            })
+            .catch((err) => alert(err));
+          event.target.reset();
         })
-        .catch((err)=>alert(err));
-        event.target.reset();
+        .catch((error) => {
+          console.error('Error hashing password:', error);
+        });
 
     } else {
       console.log('Form contains validation errors.');
     }
   };
+  
 
   return (
     <div className="signup-modal" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '5px', width: '50%', margin: 'auto', color: 'white' }}>

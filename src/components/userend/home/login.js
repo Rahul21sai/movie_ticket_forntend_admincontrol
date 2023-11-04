@@ -1,39 +1,47 @@
 import React from 'react';
 import { useState } from 'react';
 import Axios from 'axios'
+import Hasher from '../../passwordutils/hasher';
+
 function SignIn(){
   const [email,setEmail]=useState("");
   const [pass,setPass]=useState("");
   const [data,setdata]=useState("");
   const [message, setMessage] = useState("")
-  const handleSubmit=()=>{
-    Axios.get("http://localhost:4000/users/get-password/"+email)
-    .then((res) => {
-      if(res.status === 200) {
-        setdata(res.data);
+  const handleSubmit = () => {
+    Axios.get("http://localhost:4000/users/get-password/" + email)
+      .then((res) => {
+        if (res.status === 200) {
+          setdata(res.data);
+        } else {
+          Promise.reject();
+        }
+      })
+      .catch((err) => {
+        if (err) alert(err);
+      })
+      if (data) {
+        Hasher(pass)
+          .then((hashedPassword) => {
+            if (hashedPassword === data.password) {
+              localStorage.setItem('username', data.name);
+              localStorage.setItem('id', data._id);
+              setMessage("Login successful");
+              document.getElementById("message").style.color = "green";
+            } else {
+              setMessage("Login failed");
+              document.getElementById("message").style.color = "red";
+            }
+          })
+          .catch((error) => {
+            console.error('Error hashing password:', error);
+          });
+      } else {
+        setMessage("User Email does not exist");
+        document.getElementById("message").style.color = "blue";
       }
-      else Promise.reject()
-    })
-    .catch((err) => {
-      if(err) alert(err);
-    })
-    if(data){
-        if(pass===data.password){
-          localStorage.setItem('username',data.name);
-          localStorage.setItem('id',data._id);
-          setMessage("login successful")
-          document.getElementById("message").style.color = "green"
-        }
-        else{
-          setMessage("login failed")
-          document.getElementById("message").style.color = "red"
-        }
-    }
-    else {
-      setMessage("User Email does not exist")
-      document.getElementById("message").style.color = "blue"
-    }
-  }
+  };
+  
   return (
     <div style={{maxWidth:"50%"}} className='d-grid mx-auto'>
       <h2 className="text-center mb-4">Login</h2>
