@@ -8,7 +8,7 @@ import Editmovie from './components/moviecomponents/editmovie';
 import UserList from './components/usercomponents/userlist';
 import SignUp from './components/userend/home/register';
 import SignIn from './components/userend/home/login';
-import SeatBooking from './components/booking_interface/main';
+import BookTickets from './components/bookingcomponents/booktickets';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="/edit-movie/:id" element={<Editmovie />} />
           <Route path="/register" element={<SignUp />}/>
           <Route path="/signin" element={<SignIn />}/>
-          <Route path="/book-seats" element={<SeatBooking />} />
+          <Route path="/book-seats" element={<BookTickets />} />
         </Routes>
       </HashRouter>
     </div>

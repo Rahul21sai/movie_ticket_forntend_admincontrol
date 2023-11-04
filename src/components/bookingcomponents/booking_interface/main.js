@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SeatBooking = () => {
+const SeatBooking = (props) => {
   const [selectedSeats, setSelectedSeats] = useState(new Set());
 
   const seatRows = 8;
@@ -22,6 +22,10 @@ const SeatBooking = () => {
   const isSeatSelected = (row, seat) => {
     return selectedSeats.has(`${String.fromCharCode(65 + row)}-${seat + 1}`);
   };
+
+  const handleClick = () => {
+    props.getVal(Array.from(selectedSeats).join(', '))
+  }
 
   return (
     <div className="container">
@@ -46,6 +50,7 @@ const SeatBooking = () => {
         </div>
       </div>
       <p className="text-center mt-3">Selected Seats: {Array.from(selectedSeats).join(', ')}</p>
+      <button className='btn btn-outline-success' onClick={handleClick}>Confirm</button>
     </div>
 
   );
