@@ -45,7 +45,7 @@ function SignIn(){
   return (
     <div style={{maxWidth:"50%"}} className='d-grid mx-auto'>
       <h2 className="text-center mb-4">Login</h2>
-      <p id='message' className='my-2'>{message}</p>
+      <p id='message' className='my-2 text-center'>{message}</p>
       <form className='form-control' onSubmit={handleSubmit}>
         <label htmlFor="email" className="form-label">Email</label>
         <input type="text" id="email" onChange={(event) => setEmail(event.target.value)} className="form-control my-2" placeholder="Enter your email"/>

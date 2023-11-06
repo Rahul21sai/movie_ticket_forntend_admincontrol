@@ -50,11 +50,9 @@ const SignUp = () => {
     const isFormValid = validateForm();
   
     if (isFormValid) {
-      // Hash the password using the hashPassword utility function
       Hasher(formData.password)
         .then((hashedPassword) => {
-          console.log('Hashed Password:', hashedPassword); // Add this line for debugging
-          // Create a user object with the hashed password
+          console.log('Hashed Password:', hashedPassword);
           const data = {
             name: formData.username,
             email: formData.email,
@@ -63,7 +61,6 @@ const SignUp = () => {
             dob: formData.dob,
           };
 
-          // Send the user data to your server for registration
           Axios.post("http://localhost:4000/users/register/", data)
             .then((res) => {
               if (res.status === 200) {
@@ -86,13 +83,11 @@ const SignUp = () => {
   
 
   return (
-    <div className="signup-modal" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '20px', borderRadius: '5px', width: '50%', margin: 'auto', color: 'white' }}>
+    <div className="signup-modal">
       <h2 className="text-center mb-4">Sign Up</h2>
+      <center>
       <form onSubmit={handleSignUp}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="email"
             id="email"
@@ -100,14 +95,10 @@ const SignUp = () => {
             placeholder="Enter your email"
             value={formData.email}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.email && <div className="text-danger">{errors.email}</div>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
-            Username
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="text"
             id="username"
@@ -115,14 +106,10 @@ const SignUp = () => {
             placeholder="Enter your username"
             value={formData.username}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.username && <div className="text-danger">{errors.username}</div>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="password"
             id="password"
@@ -130,14 +117,10 @@ const SignUp = () => {
             placeholder="Enter your password"
             value={formData.password}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.password && <div className="text-danger">{errors.password}</div>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="reEnterPassword" className="form-label">
-            Re-enter Password
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="password"
             id="reEnterPassword"
@@ -145,28 +128,20 @@ const SignUp = () => {
             placeholder="Re-enter your password"
             value={formData.reEnterPassword}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.reEnterPassword && <div className="text-danger">{errors.reEnterPassword}</div>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="dob" className="form-label">
-            Date of Birth
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="date"
             id="dob"
             className="form-control"
             value={formData.dob}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.dob && <div className="text-danger">{errors.dob}</div>}
         </div>
-        <div className="mb-3">
-          <label htmlFor="mobile" className="form-label">
-            Mobile Number
-          </label>
+        <div className="mb-3 col-8">
           <input
             type="text"
             id="mobile"
@@ -174,19 +149,14 @@ const SignUp = () => {
             placeholder="Enter your mobile number"
             value={formData.mobile}
             onChange={handleInputChange}
-            style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', borderBottom: '1px solid white', color: 'white' }}
           />
           {errors.mobile && <div className="text-danger">{errors.mobile}</div>}
         </div>
-        <button type="submit" className="btn btn-primary btn-block" style={{ backgroundColor: 'white', color: '#007bff', border: 'none' }}>
+        <button type="submit" className="btn btn-primary d-flex justify-content-center" style={{margin: "0px auto"}}>
           Sign Up
         </button>
       </form>
-      <div className="text-center mt-3">
-        <span className="close-button" style={{ cursor: 'pointer' }}>
-          Close
-        </span>
-      </div>
+      </center>
     </div>
   );
 };
