@@ -3,14 +3,17 @@ import React, { useState } from 'react';
 
 const SeatsCheck = (props) => {
   const seatsarr = props.obj.seats;
+  const [amount, setAmount] = useState(0)
   const [selectedSeats, setSelectedSeats] = useState(new Set());
 
   const handleSeatClick = (seatId, isOccupied) => {
     if (!isOccupied) {
       const updatedSelectedSeats = new Set(selectedSeats);
       if (selectedSeats.has(seatId)) {
+        setAmount(amount-200);
         updatedSelectedSeats.delete(seatId);
       } else {
+        setAmount(amount+200);
         updatedSelectedSeats.add(seatId);
       }
       setSelectedSeats(updatedSelectedSeats);
@@ -63,7 +66,8 @@ const SeatsCheck = (props) => {
     <center>
         <div className="container">
             {renderSeats()}
-            <p>{Array.from(selectedSeats).join(", ")}</p>
+            <p className='mt-2'>Selected Seats: {Array.from(selectedSeats).join(", ")}</p>
+            <p>Total Amount: {amount}</p>
             <div className='btn btn-success' onClick={handleClick}>Confirm Tickets</div>
         </div>
     </center>

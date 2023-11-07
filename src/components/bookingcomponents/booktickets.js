@@ -8,7 +8,7 @@ function BookTickets() {
     const [showdate,setdate]=useState([]);
     const [time,settime]=useState([]);
     const [locations,setlocation]=useState([]);
-    const [theatres,settheatres]=useState("");
+    const [theatres,settheatres]=useState([]);
     const [showtheaters,setshowtheathers]=useState(false);
     const [dates,setdates]=useState([]);
     const [showsubmitbutton,setshowsubmitbutton]=useState(true);
@@ -84,15 +84,14 @@ function BookTickets() {
     }
     return (
         <form>
-            <select className="form-select my-3" onChange={gettheatres} >
+            <select className="form-select my-3" defaultValue={locations[0]} onChange={gettheatres} >
                 {getLocation()}
             </select>
             {showtheaters && 
                 <>
-                    <select className="form-select my-3" onChange={(event)=>{settheatername(event.target.value)}} >{gettheaternames()}</select>
-                    <select className="form-select my-3" onChange={(event)=>{setdate(event.target.value)}}>{getDates()}</select> 
-                    <select className="form-select my-3" onChange={(event)=>{settime(event.target.value)}}>
-                        <option value={null}>--</option>
+                    <select className="form-select my-3" defaultValue={theatres.length > 0 ? theatres[0].name : ""} onChange={(event)=>{settheatername(event.target.value)}} >{gettheaternames()}</select>
+                    <select className="form-select my-3" defaultValue={dates.length > 0 ? dates[0].date : ""} onChange={(event)=>{setdate(event.target.value)}}>{getDates()}</select> 
+                    <select className="form-select my-3" onChange={(event)=>{settime(event.target.value)}} defaultValue={"11:15 AM"}> 
                         <option value={"11:15 AM"}>11:15 AM</option>    
                         <option value={"2:30 PM"}>2:30 PM</option>  
                         <option value={"5:30 PM"}>5:30 PM</option>  

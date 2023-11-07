@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Nav() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false);
+  const [isTheatersDropdownOpen, setIsTheatersDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const toggleMoviesDropdown = () => {
+    setIsMoviesDropdownOpen(!isMoviesDropdownOpen);
   };
-  
+
+  const toggleTheatersDropdown = () => {
+    setIsTheatersDropdownOpen(!isTheatersDropdownOpen);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link to="/" className="navbar-brand">
@@ -34,29 +39,56 @@ function Nav() {
           <li className="nav-item dropdown">
             <p
               className="nav-link dropdown-toggle"
-              id="navbarDropdownMenuLink"
+              id="moviesDropdownLink"
               role="button"
               data-bs-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded={isDropdownOpen}
-              onClick={toggleDropdown}
-              href='/'
+              aria-expanded={isMoviesDropdownOpen}
+              onClick={toggleMoviesDropdown}
+              href="/"
             >
               Manage Movies
             </p>
             <div
-              className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`}
-              aria-labelledby="navbarDropdownMenuLink"
+              className={`dropdown-menu ${isMoviesDropdownOpen ? 'show' : ''}`}
+              aria-labelledby="moviesDropdownLink"
             >
-              <Link to="/add-movie-form" className="dropdown-item" onClick={toggleDropdown}>
+              <Link to="/add-movie-form" className="dropdown-item" onClick={toggleMoviesDropdown}>
                 Add Movie
               </Link>
-              <Link to="/view-movie-list" className="dropdown-item" onClick={toggleDropdown}>
+              <Link to="/view-movie-list" className="dropdown-item" onClick={toggleMoviesDropdown}>
                 View Movie List
               </Link>
             </div>
           </li>
-          
+
+          {/* Add a similar dropdown for managing theaters */}
+          <li className="nav-item dropdown">
+            <p
+              className="nav-link dropdown-toggle"
+              id="theatersDropdownLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded={isTheatersDropdownOpen}
+              onClick={toggleTheatersDropdown}
+              href="/"
+            >
+              Manage Theaters
+            </p>
+            <div
+              className={`dropdown-menu ${isTheatersDropdownOpen ? 'show' : ''}`}
+              aria-labelledby="theatersDropdownLink"
+            >
+              <Link to="/add-theater-form" className="dropdown-item" onClick={toggleTheatersDropdown}>
+                Add Theater
+              </Link>
+              <Link to="/view-theater-list" className="dropdown-item" onClick={toggleTheatersDropdown}>
+                View Theater List
+              </Link>
+            </div>
+          </li>
+
           <li className="nav-item">
             <Link to="/profile" className="nav-link">
               Profile

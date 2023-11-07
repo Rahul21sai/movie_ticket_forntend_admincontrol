@@ -29,7 +29,7 @@ function MovieForm(props)
             <input defaultValue={props.genreValue} onChange={(event)=>setGenre(event.target.value)} class="form-control my-3" placeholder="Enter movie genre" />
             <input defaultValue={props.imageValue} onChange={(event)=>setImage(event.target.value)} class="form-control my-3" placeholder="Enter movie imageurl" />
             <input defaultValue={props.ratingValue} onChange={(event)=>setRating(event.target.value)} class="form-control my-3" placeholder="Enter movie rating" />
-            <button onClick={handleClick} class="btn btn-success my-3 d-block mx-auto" type="submit">Add Movie</button>
+            <button onClick={handleClick} class="btn btn-success my-3 d-block mx-auto" type="submit">{props.children}</button>
         </div>
     )
 }
