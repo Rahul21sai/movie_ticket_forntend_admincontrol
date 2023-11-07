@@ -4,7 +4,7 @@ function Userlistrow(props) {
     const { _id, name, email, password, mobile, dob} = props.obj;
 
     const handleClick = () => {
-        Axios.delete("http://localhost:4000/users/deleteAccount/" + _id)
+        Axios.delete("https://showtimesquad-backend.onrender.com/users/deleteAccount/" + _id)
             .then((res) => {
                 if (res.status === 200) {
                     alert("Record deleted successfully");

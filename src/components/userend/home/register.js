@@ -61,7 +61,7 @@ const SignUp = () => {
             dob: formData.dob,
           };
 
-          Axios.post("http://localhost:4000/users/register/", data)
+          Axios.post("https://showtimesquad-backend.onrender.com/users/register/", data)
             .then((res) => {
               if (res.status === 200) {
                 alert("Record added successfully");

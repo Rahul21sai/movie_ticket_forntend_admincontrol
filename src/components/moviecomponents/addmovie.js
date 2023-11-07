@@ -13,7 +13,7 @@ function AddMovie()
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = {name: arr[0],length:arr[1],genre:arr[2],image:arr[3],rating:arr[4]};
-        Axios.post("http://localhost:4000/movies/add-movie/",data)
+        Axios.post("https://showtimesquad-backend.onrender.com/movies/add-movie/",data)
         .then((res)=>{
             if(res.status === 200)
                 alert("Record added successfully");

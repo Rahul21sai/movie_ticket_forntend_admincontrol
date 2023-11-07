@@ -9,7 +9,7 @@ function EditTheater() {
     const [newData, setNewData] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:4000/theatres/update-theatre/" + id)
+        Axios.get("https://showtimesquad-backend.onrender.com/theatres/update-theatre/" + id)
             .then((res) => {
                 if (res.status === 200) {
                     const { name, city} = res.data;
@@ -27,7 +27,7 @@ function EditTheater() {
 
     const handleSubmit = () => {
         const data = { name: newData[0], city: newData[1]};
-        Axios.put("http://localhost:4000/theatres/update-theatre/" + id, data)
+        Axios.put("https://showtimesquad-backend.onrender.com/theatres/update-theatre/" + id, data)
             .then((res) => {
                 if (res.status === 200)
                     alert("Record updated successfully")

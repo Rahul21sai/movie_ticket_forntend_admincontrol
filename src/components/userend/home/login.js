@@ -9,7 +9,7 @@ function SignIn(){
   const [data,setdata]=useState("");
   const [message, setMessage] = useState("")
   const handleSubmit = () => {
-    Axios.get("http://localhost:4000/users/get-password/" + email)
+    Axios.get("https://showtimesquad-backend.onrender.com/users/get-password/" + email)
       .then((res) => {
         if (res.status === 200) {
           setdata(res.data);

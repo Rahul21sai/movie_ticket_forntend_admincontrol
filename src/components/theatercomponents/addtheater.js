@@ -10,7 +10,7 @@ function AddTheater () {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = {name: arr[0],city: arr[1]};
-        Axios.post("http://localhost:4000/theatres/add-theatre/",data)
+        Axios.post("https://showtimesquad-backend.onrender.com/theatres/add-theatre/",data)
         .then((res)=>{
             if(res.status === 200)
                 alert("Record added successfully");

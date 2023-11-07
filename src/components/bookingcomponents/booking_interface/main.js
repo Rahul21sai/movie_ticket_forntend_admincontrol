@@ -7,12 +7,13 @@ const SeatBooking = (props) => {
   const prevSelected = props.obj
   const {_id} = props.obj;
   console.log(prevSelected)
+  console.log(selectedSeats)
   console.log(_id);
 
   const getChilddata = (data) => {
     setSelectedSeats(data)
     const copy={showName:props.obj.showName,location:props.obj.location,theater:props.obj.theater,date:props.obj.date,time:props.obj.time,seats:data};
-    Axios.put("http://localhost:4000/shows/updateshow/"+_id, copy)
+    Axios.put("https://showtimesquad-backend.onrender.com/shows/updateshow/"+_id, copy)
     .then((res) => {
       if(res.status === 200) alert("Booked Successfully")
       else Promise.reject()

@@ -9,7 +9,7 @@ function Editmovie() {
     const [newData, setNewData] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:4000/movies/update-movie/" + id)
+        Axios.get("https://showtimesquad-backend.onrender.com/movies/update-movie/" + id)
             .then((res) => {
                 if (res.status === 200) {
                     const { name, length, genre, image, rating} = res.data;
@@ -27,7 +27,7 @@ function Editmovie() {
 
     const handleSubmit = () => {
         const data = { name: newData[0], length: newData[1], genre: newData[2], image: newData[3], rating: newData[4] };
-        Axios.put("http://localhost:4000/movies/update-movie/" + id, data)
+        Axios.put("https://showtimesquad-backend.onrender.com/movies/update-movie/" + id, data)
             .then((res) => {
                 if (res.status === 200)
                     alert("Record updated successfully")
