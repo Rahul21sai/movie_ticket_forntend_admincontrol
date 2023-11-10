@@ -24,6 +24,7 @@ const SeatsCheck = (props) => {
         const updatedSeats = seatsarr.map((seatData) => {
         if (selectedSeats.has(seatData.seatId)) {
             seatData.isOccupied = true;
+            seatData.userDetails=localStorage.getItem("id");
         }
         return seatData;
         });

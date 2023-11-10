@@ -8,7 +8,8 @@ function SignIn(){
   const [pass,setPass]=useState("");
   const [data,setdata]=useState("");
   const [message, setMessage] = useState("")
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     Axios.get("https://showtimesquad-backend.onrender.com/users/get-password/" + email)
       .then((res) => {
         if (res.status === 200) {
