@@ -2,7 +2,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 
 function Movielistrow(props) {
-    const { _id, name, length, genre, image, rating} = props.obj;
+    const { _id, name, length, genre, image, banner, rating} = props.obj;
 
     const handleClick = () => {
         Axios.delete("https://showtimesquad-backend.onrender.com/movies/delete-movie/" + _id)
@@ -22,10 +22,11 @@ function Movielistrow(props) {
             <td>{name}</td>
             <td>{length}</td>
             <td>{genre}</td>
-            <td><img src={image} alt={name} height="90px" width="160px"/></td>
+            <td><img src={image} alt={name} height="90px"/></td>
+            <td><img src={banner} alt={name} height="90px"/></td>
             <td>{rating}</td>
-            <td class="d-gridjustify-content-center align-items-center my-auto">
-                <Link class="text-decoration-none text-light me-4" to={"/edit-movie/" + _id}>
+            <td>
+                <Link class="text-decoration-none text-light my-5" to={"/edit-movie/" + _id}>
                     <button class="btn btn-success">
                         Edit
                     </button>

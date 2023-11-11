@@ -7,16 +7,17 @@ function MovieForm(props)
     const [genre,setGenre] = useState(props.genreValue);
     const [image, setImage] = useState(props.imageValue);
     const [rating,setRating] = useState(props.ratingValue);
-    
+    const [banner,setBanner] =useState(props.bannerValue);
     useEffect(()=>{
         setName(props.nameValue);
         setLength(props.lengthValue)
         setGenre(props.genreValue)
         setImage(props.imageValue);
         setRating(props.ratingValue)
-    },[props.nameValue,props.lengthValue,props.genreValue,props.imageValue,props.ratingValue]);
+        setBanner(props.bannerValue)
+    },[props.nameValue,props.lengthValue,props.genreValue,props.imageValue,props.bannerValue,props.ratingValue]);
    
-    const arr = [name, length, genre, image, rating];
+    const arr = [name, length, genre, image, banner, rating];
    
     const handleClick = () =>{
         props.getState(arr)
@@ -28,6 +29,7 @@ function MovieForm(props)
             <input defaultValue={props.lengthValue} onChange={(event)=>setLength(event.target.value)} class="form-control my-3" placeholder="Enter movie length" />
             <input defaultValue={props.genreValue} onChange={(event)=>setGenre(event.target.value)} class="form-control my-3" placeholder="Enter movie genre" />
             <input defaultValue={props.imageValue} onChange={(event)=>setImage(event.target.value)} class="form-control my-3" placeholder="Enter movie imageurl" />
+            <input defaultValue={props.bannerValue} onChange={(event)=>setBanner(event.target.value)} class="form-control my-3" placeholder="Enter movie bannerurl" />
             <input defaultValue={props.ratingValue} onChange={(event)=>setRating(event.target.value)} class="form-control my-3" placeholder="Enter movie rating" />
             <button onClick={handleClick} class="btn btn-success my-3 d-block mx-auto" type="submit">{props.children}</button>
         </div>

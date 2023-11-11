@@ -12,7 +12,7 @@ function AddMovie()
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = {name: arr[0],length:arr[1],genre:arr[2],image:arr[3],rating:arr[4]};
+        const data = {name: arr[0],length:arr[1],genre:arr[2],image:arr[3],banner:arr[4],rating:arr[5]};
         Axios.post("https://showtimesquad-backend.onrender.com/movies/add-movie/",data)
         .then((res)=>{
             if(res.status === 200)
@@ -26,7 +26,7 @@ function AddMovie()
 
     return (
         <form onSubmit={handleSubmit}>
-            <MovieForm getState={getState} nameValue="" lengthValue="" genreValue="" imageValue="" ratingValue="">
+            <MovieForm getState={getState} nameValue="" lengthValue="" genreValue="" bannerValue="" imageValue="" ratingValue="">
                 Add Movie
             </MovieForm>
         </form>

@@ -29,6 +29,7 @@ function MovieList()
                     <th class="text-center">Length</th>
                     <th class="text-center">Genre</th>
                     <th class="text-center">Image</th>
+                    <th class="text-center">Banner</th>
                     <th class="text-center">Rating</th>
                     <th className="text-center">Actions</th>
                 </tr>
