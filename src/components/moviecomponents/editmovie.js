@@ -5,15 +5,15 @@ import Axios from "axios";
 
 function Editmovie() {
     const { id } = useParams();
-    const [initialValue, setInitialValue] = useState({ name: "", length: "", genre: "", image: "", banner:"",rating: ""});
+    const [initialValue, setInitialValue] = useState({ name: "", length: "", genre: "", image: "", banner:"",rating: "",summary: "",trailer:""});
     const [newData, setNewData] = useState([]);
 
     useEffect(() => {
         Axios.get("https://showtimesquad-backend.onrender.com/movies/update-movie/" + id)
             .then((res) => {
                 if (res.status === 200) {
-                    const { name, length, genre, image,banner, rating} = res.data;
-                    setInitialValue({ name, length, genre, image,banner, rating});
+                    const { name, length, genre, image, banner, rating, summary, trailer} = res.data;
+                    setInitialValue({ name, length, genre, image, banner, rating, summary, trailer});
                 }
                 else
                     Promise.reject();
@@ -26,7 +26,7 @@ function Editmovie() {
     }
 
     const handleSubmit = () => {
-        const data = { name: newData[0], length: newData[1], genre: newData[2], image: newData[3],banner: newData[4], rating: newData[5] };
+        const data = { name: newData[0], length: newData[1], genre: newData[2], image: newData[3], banner: newData[4], rating: newData[5], summary: newData[6], trailer: newData[7] };
         Axios.put("https://showtimesquad-backend.onrender.com/movies/update-movie/" + id, data)
             .then((res) => {
                 if (res.status === 200)
@@ -44,7 +44,9 @@ function Editmovie() {
                 genreValue={initialValue.genre}
                 imageValue={initialValue.image}
                 bannerValue={initialValue.banner}
-                ratingValue={initialValue.rating}>
+                ratingValue={initialValue.rating}
+                summaryValue={initialValue.summary}
+                trailerValue={initialValue.trailer}>
                     Update Movie
             </MovieForm>
         </form>
