@@ -5,15 +5,15 @@ import Axios from "axios";
 
 function EditTheater() {
     const { id } = useParams();
-    const [initialValue, setInitialValue] = useState({ name: "", city: ""});
+    const [initialValue, setInitialValue] = useState({ name: "", city: "",movie: ""});
     const [newData, setNewData] = useState([]);
 
     useEffect(() => {
         Axios.get("https://showtimesquad-backend.onrender.com/theatres/update-theatre/" + id)
             .then((res) => {
                 if (res.status === 200) {
-                    const { name, city} = res.data;
-                    setInitialValue({ name, city});
+                    const { name, city,movie} = res.data;
+                    setInitialValue({ name, city,movie});
                 }
                 else
                     Promise.reject();
@@ -26,7 +26,7 @@ function EditTheater() {
     }
 
     const handleSubmit = () => {
-        const data = { name: newData[0], city: newData[1]};
+        const data = { name: newData[0], city: newData[1],movie: newData[2]};
         Axios.put("https://showtimesquad-backend.onrender.com/theatres/update-theatre/" + id, data)
             .then((res) => {
                 if (res.status === 200)
@@ -40,7 +40,8 @@ function EditTheater() {
         <form onSubmit={handleSubmit}>
             <Theaterform getChild={getChild}
                 nameValue={initialValue.name}
-                cityValue={initialValue.city}>
+                cityValue={initialValue.city}
+                movieValue={initialValue.movie}>
                     Update Theater
             </Theaterform>
         </form>

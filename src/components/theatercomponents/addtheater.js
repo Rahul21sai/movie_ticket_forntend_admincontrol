@@ -9,7 +9,8 @@ function AddTheater () {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = {name: arr[0],city: arr[1]};
+        const data = {name: arr[0],city: arr[1],movie:arr[2]};
+        console.log(data);
         Axios.post("https://showtimesquad-backend.onrender.com/theatres/add-theatre/",data)
         .then((res)=>{
             if(res.status === 200)

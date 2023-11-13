@@ -27,6 +27,7 @@ function Theaterlist()
                 <tr>
                     <th class="text-center">Name</th>
                     <th class="text-center">Location</th>
+                    <th class="text-center">Movie</th>
                     <th className="text-center">Actions</th>
                 </tr>
             </thead>

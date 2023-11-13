@@ -2,7 +2,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 
 function Theaterlistrow(props) {
-    const { _id, name, city} = props.obj;
+    const { _id, name, city,movie} = props.obj;
 
     const handleClick = () => {
         Axios.delete("https://showtimesquad-backend.onrender.com/theatres/delete-theatre/" + _id)
@@ -21,6 +21,7 @@ function Theaterlistrow(props) {
         <tr>
             <td>{name}</td>
             <td>{city}</td>
+            <td>{movie}</td>
             <td class="d-gridjustify-content-center align-items-center my-auto">
                 <Link class="text-decoration-none text-light me-4" to={"/edit-theater/" + _id}>
                     <button class="btn btn-success">
