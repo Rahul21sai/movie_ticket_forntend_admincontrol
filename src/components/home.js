@@ -88,13 +88,7 @@ function Nav() {
               </Link>
             </div>
           </li>
-
-          <li className="nav-item">
-            <Link to="/profile" className="nav-link">
-              Profile
-            </Link>
-          </li>
-          <p className='nav-item mt-2 mx-3'>{localStorage.getItem('username')}</p>
+          <p className='nav-item mt-2 mx-3'>Admin</p>
         </ul>
       </div>
     </nav>

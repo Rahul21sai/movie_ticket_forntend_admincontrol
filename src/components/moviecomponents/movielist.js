@@ -25,13 +25,13 @@ function MovieList()
         <table style={{maxWidth:"60%", margin: "50px auto"}} class="table table-bordered table-striped table-dark">
             <thead>
                 <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Length</th>
-                    <th class="text-center">Genre</th>
-                    <th class="text-center">Image</th>
-                    <th class="text-center">Banner</th>
-                    <th class="text-center">Rating</th>
-                    <th className="text-center">Actions</th>
+                    <th class="text-center col-md-2">Name</th>
+                    <th class="text-center col-md-2">Length</th>
+                    <th class="text-center col-md-2">Genre</th>
+                    <th class="text-center col-md-2">Image</th>
+                    <th class="text-center col-md-2">Banner</th>
+                    <th class="text-center col-md-2">Rating</th>
+                    <th className="text-center col-md-2">Actions</th>
                 </tr>
             </thead>
             <tbody>

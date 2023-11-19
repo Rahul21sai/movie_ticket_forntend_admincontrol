@@ -25,15 +25,17 @@ function Movielistrow(props) {
             <td><img src={image} alt={name} height="90px"/></td>
             <td><img src={banner} alt={name} height="90px"/></td>
             <td>{rating}</td>
-            <td>
-                <Link class="text-decoration-none text-light my-5" to={"/edit-movie/" + _id}>
-                    <button class="btn btn-success">
-                        Edit
+            <td >
+                <div className="d-flex justify-content-center align-items-center mt-4">
+                    <Link class="text-decoration-none text-light mx-2" to={"/edit-movie/" + _id}>
+                        <button class="btn btn-success">
+                            Edit
+                        </button>
+                    </Link>
+                    <button onClick={handleClick} class="btn btn-danger mx-2">
+                        Delete
                     </button>
-                </Link>
-                <button onClick={handleClick} class="btn btn-danger">
-                    Delete
-                </button>
+                </div>
             </td>
         </tr>
     )

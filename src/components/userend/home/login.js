@@ -1,61 +1,85 @@
-import React from 'react';
-import { useState } from 'react';
-import Axios from 'axios'
-import Hasher from '../../passwordutils/hasher';
+import React, { useState } from 'react';
+import Axios from 'axios';
+import Loader from '../other/loader';
 
-function SignIn(){
-  const [email,setEmail]=useState("");
-  const [pass,setPass]=useState("");
-  const [data,setdata]=useState("");
-  const [message, setMessage] = useState("")
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    Axios.get("https://showtimesquad-backend.onrender.com/users/get-password/" + email)
+function SignIn() {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [loadingadmin, setLoadingadmin] = useState(false);
+  const [message,setmessage]=useState("");
+
+  const handleAdminSubmit = (event) => {
+    event.preventDefault()
+    setLoadingadmin(true);
+    Axios.get('https://showtimesquad-backend.onrender.com/admins/get-password/' + email)
       .then((res) => {
         if (res.status === 200) {
-          setdata(res.data);
+          const data = res.data;
+          if (!data) {
+            setmessage("You're not an Admin");
+            setLoadingadmin(false);
+            return;
+          }
+          if (pass === data.password) {
+            localStorage.setItem('username', data.name);
+            localStorage.setItem('id', data._id);
+            localStorage.setItem('islogged',true);
+            localStorage.setItem('isAdmin', true)
+            redirectToAdminHome();
+          } else {
+            setmessage("Password Incorrect");
+            
+            setLoadingadmin(false);
+          }
+
         } else {
-          Promise.reject();
+          
+          setLoadingadmin(false);
         }
       })
       .catch((err) => {
-        if (err) alert(err);
-      })
-      if (data) {
-        Hasher(pass)
-          .then((hashedPassword) => {
-            if (hashedPassword === data.password) {
-              localStorage.setItem('username', data.name);
-              localStorage.setItem('id', data._id);
-              setMessage("Login successful");
-              document.getElementById("message").style.color = "green";
-            } else {
-              setMessage("Login failed");
-              document.getElementById("message").style.color = "red";
-            }
-          })
-          .catch((error) => {
-            console.error('Error hashing password:', error);
-          });
-      } else {
-        setMessage("User Email does not exist");
-        document.getElementById("message").style.color = "blue";
-      }
+        alert(err);
+        setLoadingadmin(false);
+      });
+  }
+  const redirectToAdminHome = () => {
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1500);
   };
-  
+  const getcolor=()=>{
+    if(localStorage.getItem("darkmode")==="yes"){
+      return "text-light"
+    }
+    return "text-dark"
+  }
   return (
-    <div style={{maxWidth:"50%"}} className='d-grid mx-auto'>
-      <h2 className="text-center mb-4">Login</h2>
-      <p id='message' className='my-2 text-center'>{message}</p>
-      <form className='form-control' onSubmit={handleSubmit}>
-        <label htmlFor="email" className="form-label">Email</label>
-        <input type="text" id="email" onChange={(event) => setEmail(event.target.value)} className="form-control my-2" placeholder="Enter your email"/>
-        <label htmlFor="password" className="form-label">Password</label>
-        <input type="password" id="password" onChange={(event) => setPass(event.target.value)} className="form-control my-2" placeholder="Enter your password"/>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
+    <div className='d-grid mx-auto' style={{ maxWidth: '60%' }}>
+     <h2 className={`text-center mb-4`}>Sign In</h2>
+      <p className="text-danger text-center">{message}</p>
+      <center className='row'>
+        <form onSubmit={handleAdminSubmit}>
+          <input
+            type='text'
+            id='email'
+            onChange={(event) => setEmail(event.target.value)}
+            className='form-control mb-3 col-8'
+            placeholder='Enter your email'
+          />
+          <input
+            type='password'
+            id='password'
+            onChange={(event) => setPass(event.target.value)}
+            className='form-control mb-3 col-8'
+            placeholder='Enter your password'
+          />
+          <button type='submit' className='btn btn-info mx-2' style={{ margin: '0px auto' }}>
+            {loadingadmin ? <Loader /> : 'Admin'}
+          </button>
+        </form>
+      </center>
     </div>
   );
-};
+}
 
 export default SignIn;
