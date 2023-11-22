@@ -5,7 +5,10 @@ function Movielistrow(props) {
   const { _id, name, length, genre, image, banner, rating } = props.obj;
 
   const handleClick = () => {
-    Axios.delete("http://localhost:4000/movies/delete-movie/" + _id)
+    Axios.delete(
+      "https://movie-ticket-booking-pzhg.onrender.com/movies/delete-movie/" +
+        _id
+    )
       .then((res) => {
         if (res.status === 200) {
           alert("Record deleted successfully");

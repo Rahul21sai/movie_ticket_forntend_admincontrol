@@ -35,7 +35,9 @@ function BookTickets() {
       options.push({ date, formattedDate });
     }
     setdates(options);
-    Axios.get("http://localhost:4000/theatres/get-cities")
+    Axios.get(
+      "https://movie-ticket-booking-pzhg.onrender.com/theatres/get-cities"
+    )
       .then((res) => {
         if (res.status === 200) {
           setlocation(res.data);
@@ -55,7 +57,8 @@ function BookTickets() {
   const gettheatres = (event) => {
     setcity(event.target.value);
     Axios.get(
-      "http://localhost:4000/theatres/get-theaters/" + event.target.value
+      "https://movie-ticket-booking-pzhg.onrender.com/theatres/get-theaters/" +
+        event.target.value
     )
       .then((res) => {
         if (res.status === 200) {
@@ -80,13 +83,16 @@ function BookTickets() {
   const getshowdetails = (event) => {
     event.preventDefault();
     console.log(localStorage.getItem("movie"));
-    Axios.post("https://movie-ticket-booking-pzhg.onrender.com/shows/createshow", {
-      showName: localStorage.getItem("movie"),
-      time: time,
-      date: showdate,
-      location: city,
-      theater: theatername,
-    }).then((res) => {
+    Axios.post(
+      "https://movie-ticket-booking-pzhg.onrender.com/shows/createshow",
+      {
+        showName: localStorage.getItem("movie"),
+        time: time,
+        date: showdate,
+        location: city,
+        theater: theatername,
+      }
+    ).then((res) => {
       if (res.status === 200) {
         setshowdetails(res.data);
         setshowsubmitbutton(false);

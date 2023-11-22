@@ -18,7 +18,9 @@ function Editmovie() {
   const [newData, setNewData] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:4000/movies/update-movie/" + id)
+    Axios.get(
+      "https://movie-ticket-booking-pzhg.onrender.com/movies/update-movie/" + id
+    )
       .then((res) => {
         if (res.status === 200) {
           const {
@@ -61,7 +63,11 @@ function Editmovie() {
       summary: newData[6],
       trailer: newData[7],
     };
-    Axios.put("https://movie-ticket-booking-pzhg.onrender.com/movies/update-movie/" + id, data)
+    Axios.put(
+      "https://movie-ticket-booking-pzhg.onrender.com/movies/update-movie/" +
+        id,
+      data
+    )
       .then((res) => {
         if (res.status === 200) alert("Record updated successfully");
         else Promise.reject();
