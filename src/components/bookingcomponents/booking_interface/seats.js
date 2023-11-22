@@ -69,7 +69,7 @@ const SeatsCheck = (props) => {
             {renderSeats()}
             <p className='mt-2'>Selected Seats: {Array.from(selectedSeats).join(", ")}</p>
             <p>Total Amount: {amount}</p>
-            <div className='btn btn-success' onClick={handleClick}>Confirm Tickets</div>
+            <div className='btn btn-success' onClick={handleClick}>Confirmed Tickets</div>
         </div>
     </center>
   );

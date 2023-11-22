@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Nav() {
   const [isMoviesDropdownOpen, setIsMoviesDropdownOpen] = useState(false);
@@ -16,7 +16,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link to="/" className="navbar-brand">
-        ShowTimeSquad
+      ReelRuckus
       </Link>
       <button
         className="navbar-toggler"
@@ -50,13 +50,21 @@ function Nav() {
               Manage Movies
             </p>
             <div
-              className={`dropdown-menu ${isMoviesDropdownOpen ? 'show' : ''}`}
+              className={`dropdown-menu ${isMoviesDropdownOpen ? "show" : ""}`}
               aria-labelledby="moviesDropdownLink"
             >
-              <Link to="/add-movie-form" className="dropdown-item" onClick={toggleMoviesDropdown}>
+              <Link
+                to="/add-movie-form"
+                className="dropdown-item"
+                onClick={toggleMoviesDropdown}
+              >
                 Add Movie
               </Link>
-              <Link to="/view-movie-list" className="dropdown-item" onClick={toggleMoviesDropdown}>
+              <Link
+                to="/view-movie-list"
+                className="dropdown-item"
+                onClick={toggleMoviesDropdown}
+              >
                 View Movie List
               </Link>
             </div>
@@ -77,18 +85,28 @@ function Nav() {
               Manage Theaters
             </p>
             <div
-              className={`dropdown-menu ${isTheatersDropdownOpen ? 'show' : ''}`}
+              className={`dropdown-menu ${
+                isTheatersDropdownOpen ? "show" : ""
+              }`}
               aria-labelledby="theatersDropdownLink"
             >
-              <Link to="/add-theater-form" className="dropdown-item" onClick={toggleTheatersDropdown}>
+              <Link
+                to="/add-theater-form"
+                className="dropdown-item"
+                onClick={toggleTheatersDropdown}
+              >
                 Add Theater
               </Link>
-              <Link to="/view-theater-list" className="dropdown-item" onClick={toggleTheatersDropdown}>
+              <Link
+                to="/view-theater-list"
+                className="dropdown-item"
+                onClick={toggleTheatersDropdown}
+              >
                 View Theater List
               </Link>
             </div>
           </li>
-          <p className='nav-item mt-2 mx-3'>Admin</p>
+          <p className="nav-item mt-2 mx-3">Admin</p>
         </ul>
       </div>
     </nav>

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
-import FeedbackListRow from './feedbacklistrow';
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import FeedbackListRow from "./feedbacklistrow";
 
 function FeedbackList() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    Axios.get('https://showtimesquad-backend.onrender.com/feedbacks')
+    Axios.get("https://movie-ticket-booking-pzhg.onrender.com/feedbacks")
       .then((res) => {
         if (res.status === 200) setData(res.data);
       })
@@ -14,7 +14,7 @@ function FeedbackList() {
   }, []);
 
   const ListItems = () => {
-    data.reverse()
+    data.reverse();
     return data.map((val, ind) => {
       return <FeedbackListRow key={ind} obj={val} />;
     });
@@ -23,7 +23,7 @@ function FeedbackList() {
   return (
     <div>
       <table
-        style={{ maxWidth: '70%', margin: '50px auto' }}
+        style={{ maxWidth: "70%", margin: "50px auto" }}
         className="table table-bordered table-striped table-dark"
       >
         <thead>
