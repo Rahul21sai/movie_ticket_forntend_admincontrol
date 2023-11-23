@@ -21,7 +21,10 @@ function AddMovie() {
       summary: arr[6],
       trailer: arr[7],
     };
-    Axios.post("https://movie-ticket-booking-pzhg.onrender.com/movies/add-movie/", data)
+    Axios.post(
+      "https://movie-ticket-booking-pzhg.onrender.com/movies/add-movie/",
+      data
+    )
       .then((res) => {
         if (res.status === 200) alert("Record added successfully");
         else Promise.reject();

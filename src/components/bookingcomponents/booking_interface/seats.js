@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
 
 const SeatsCheck = (props) => {
   const seatsarr = props.obj.seats;
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
 
   const handleSeatClick = (seatId, isOccupied) => {
     if (!isOccupied) {
       const updatedSelectedSeats = new Set(selectedSeats);
       if (selectedSeats.has(seatId)) {
-        setAmount(amount-200);
+        setAmount(amount - 200);
         updatedSelectedSeats.delete(seatId);
       } else {
-        setAmount(amount+200);
+        setAmount(amount + 200);
         updatedSelectedSeats.add(seatId);
       }
       setSelectedSeats(updatedSelectedSeats);
@@ -21,15 +20,15 @@ const SeatsCheck = (props) => {
   };
 
   const handleClick = () => {
-        const updatedSeats = seatsarr.map((seatData) => {
-        if (selectedSeats.has(seatData.seatId)) {
-            seatData.isOccupied = true;
-            seatData.userDetails=localStorage.getItem("id");
-        }
-        return seatData;
-        });
-        props.getChilddata(updatedSeats);
-    };
+    const updatedSeats = seatsarr.map((seatData) => {
+      if (selectedSeats.has(seatData.seatId)) {
+        seatData.isOccupied = true;
+        seatData.userDetails = localStorage.getItem("id");
+      }
+      return seatData;
+    });
+    props.getChilddata(updatedSeats);
+  };
 
   const renderSeats = () => {
     const seatRows = [];
@@ -43,12 +42,14 @@ const SeatsCheck = (props) => {
             key={seatIndex}
             className={`col-1 ${
               seatData.isOccupied
-                ? 'btn btn-dark'
+                ? "btn btn-dark"
                 : selectedSeats.has(seatData.seatId)
-                ? 'btn btn-success'
-                : 'btn btn-light'
+                ? "btn btn-success"
+                : "btn btn-light"
             }`}
-            onClick={() => handleSeatClick(seatData.seatId, seatData.isOccupied)}
+            onClick={() =>
+              handleSeatClick(seatData.seatId, seatData.isOccupied)
+            }
           >
             {seatData.seatId}
           </div>
@@ -65,12 +66,16 @@ const SeatsCheck = (props) => {
 
   return (
     <center>
-        <div className="container">
-            {renderSeats()}
-            <p className='mt-2'>Selected Seats: {Array.from(selectedSeats).join(", ")}</p>
-            <p>Total Amount: {amount}</p>
-            <div className='btn btn-success' onClick={handleClick}>Confirmed Tickets</div>
+      <div className="container">
+        {renderSeats()}
+        <p className="mt-2">
+          Selected Seats: {Array.from(selectedSeats).join(", ")}
+        </p>
+        <p>Total Amount: {amount}</p>
+        <div className="btn btn-success" onClick={handleClick}>
+          Confirmed Tickets
         </div>
+      </div>
     </center>
   );
 };

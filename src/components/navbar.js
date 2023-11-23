@@ -24,7 +24,7 @@ function NavbarAdmin() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                ReelRuckus
+                  ReelRuckus
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
